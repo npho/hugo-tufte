@@ -3,5 +3,35 @@
     {{ range .Site.Menus.nav  }}
         <li><a href="{{ .URL }}">{{ .Pre }}{{ .Name }}</a></li>
     {{ end }}
+        <li class="theme-toggle">
+            <button id="theme-toggle-btn" class="theme-switch" type="button" role="switch" aria-checked="false" aria-label="Toggle dark mode">
+                <span class="theme-switch-track">
+                    <span class="theme-switch-thumb"><span class="theme-switch-icon" id="theme-switch-icon" aria-hidden="true"></span></span>
+                </span>
+            </button>
+        </li>
     </ul>
 </nav>
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    var btn = document.getElementById("theme-toggle-btn");
+    var icon = document.getElementById("theme-switch-icon");
+    var SUN_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="5" fill="currentColor" stroke="none"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.2" y1="4.2" x2="5.6" y2="5.6"/><line x1="18.4" y1="18.4" x2="19.8" y2="19.8"/><line x1="4.2" y1="19.8" x2="5.6" y2="18.4"/><line x1="18.4" y1="5.6" x2="19.8" y2="4.2"/></svg>';
+    var MOON_SVG = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.742 13.045A8.088 8.088 0 0 1 11 3.223a1 1 0 0 0-1.276-1.114A9.5 9.5 0 1 0 21.856 14.32a1 1 0 0 0-1.114-1.276Z"/></svg>';
+    if (!btn) return;
+    function render() {
+        var isDark = document.documentElement.getAttribute("data-theme") === "dark";
+        btn.setAttribute("aria-checked", isDark ? "true" : "false");
+        btn.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+        if (icon) icon.innerHTML = isDark ? MOON_SVG : SUN_SVG;
+    }
+    render();
+    btn.addEventListener("click", function () {
+        var isDark = document.documentElement.getAttribute("data-theme") === "dark";
+        var next = isDark ? "light" : "dark";
+        document.documentElement.setAttribute("data-theme", next);
+        localStorage.setItem("theme", next);
+        render();
+    });
+});
+</script>

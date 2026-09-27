@@ -1,7 +1,7 @@
 /* Footer, but with a different name to avoid conflicts with tufte.css */
 footer.page-footer{
     margin-top: 1.4rem;
-    color: #aaa;
+    color: var(--color-footer-text);
     width: 95%;
     max-width: 45rem;
 }
@@ -12,7 +12,7 @@ footer.page-footer p {
     /*font-weight: lighter;*/
 }
 footer.page-footer a {
-    color: rgba(65, 70, 75, 1);
+    color: var(--color-footer-link);
     text-decoration: none;
     background: transparent;
 }

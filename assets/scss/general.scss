@@ -19,8 +19,8 @@
 }
 
 ::selection {
-    color: #fffff8;
-    background-color: #404040;
+    color: var(--color-selection-text);
+    background-color: var(--color-selection-bg);
 }
 
 a.heading-anchor {
@@ -46,18 +46,25 @@ hr {
     width: 75%;
     max-width: 45rem;
     border-style: solid none none none;
-    border-color: #111;
+    border-color: var(--color-border);
 }
 
 kbd {
-  border: 1px #111 solid;
+  border: 1px var(--color-border) solid;
   border-radius: 5px;
   padding-right: 2px;
   padding-left: 2px;
 }
 
 mark {
-    background: #f0d9bb;
+    background: var(--color-mark-bg);
+}
+
+/* KaTeX ships its own stylesheet (loaded separately, after ours) that
+   hardcodes black text; !important is needed to win that source-order
+   fight so math respects the current theme. */
+.katex {
+    color: var(--color-text) !important;
 }
 
 /* ------------------------------------------------------------------------ */
@@ -91,7 +98,7 @@ table:not(.lntable) {
 }
 
 table:not(.lntable) tr th {
-  border-bottom: 1px solid #111;
+  border-bottom: 1px solid var(--color-border);
   text-transform: uppercase;
 }
 

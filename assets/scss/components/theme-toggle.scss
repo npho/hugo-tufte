@@ -1,0 +1,82 @@
+/* Manual light/dark toggle, right-justified in the nav bar. The nav is
+   switched from inline-block to flex so the toggle can share the same
+   vertical center line as the menu text (`margin-left: auto` then pushes
+   it to the far right), instead of floating and eyeballing baseline
+   offsets. */
+.menu ul {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.menu li.theme-toggle {
+    margin-left: auto;
+    margin-right: 0;
+    display: flex;
+    align-items: center;
+}
+
+.theme-switch {
+    display: inline-flex;
+    align-items: center;
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
+    line-height: 0;
+}
+
+.theme-switch-track {
+    position: relative;
+    display: inline-block;
+    width: 2.9em;
+    height: 1.5em;
+    border-radius: 999px;
+    background-color: var(--color-toggle-track);
+    transition: background-color 0.2s ease;
+    box-sizing: border-box;
+}
+
+.theme-switch-thumb {
+    position: absolute;
+    top: 0.15em;
+    left: 0.15em;
+    width: 1.15em;
+    height: 1.15em;
+    border-radius: 50%;
+    background: var(--color-toggle-thumb);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Slide distance = track width - thumb width - 2 * thumb offset
+   = 2.9em - 1.15em - 0.3em = 1.45em */
+:root[data-theme="dark"] .theme-switch-thumb {
+    transform: translateX(1.45em);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .theme-switch-thumb {
+        transform: translateX(1.45em);
+    }
+}
+
+.theme-switch-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 0.72em;
+    height: 0.72em;
+    color: var(--color-toggle-icon);
+    transition: color 0.2s ease;
+}
+
+.theme-switch-icon svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+}

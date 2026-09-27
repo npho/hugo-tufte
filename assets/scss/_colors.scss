@@ -1,0 +1,52 @@
+/* Color tokens for light/dark mode.
+   Default (light) values match the theme's original hardcoded colors
+   exactly, so light mode is unchanged. Dark values apply automatically via
+   prefers-color-scheme, or can be forced either way with a `data-theme`
+   attribute on <html> (see partials/nav.html and partials/header.html for
+   the manual toggle). */
+
+:root {
+    --color-bg: #fffff8;
+    --color-text: #111;
+    --color-heading: #111;
+    --color-border: #111;
+    --color-border-light: #efefef;
+    --color-link: inherit;
+    --color-mark-bg: #f0d9bb;
+    --color-selection-bg: #404040;
+    --color-selection-text: #fffff8;
+    --color-footer-text: #aaa;
+    --color-footer-link: rgba(65, 70, 75, 1);
+    --color-code-marker: #111;
+    --color-toggle-track: #d8d2c0;
+    --color-toggle-thumb: #fffff8;
+    --color-toggle-icon: #d9a53f;
+}
+
+@mixin dark-tokens {
+    --color-bg: #191919;
+    --color-text: #d9d3c4;
+    --color-heading: #f2ede0;
+    --color-border: #4a4438;
+    --color-border-light: #33302a;
+    --color-link: #e0b171;
+    --color-mark-bg: #4a3f22;
+    --color-selection-bg: #4a4438;
+    --color-selection-text: #f2ede0;
+    --color-footer-text: #8a8371;
+    --color-footer-link: #bfb8a6;
+    --color-code-marker: #d9d3c4;
+    --color-toggle-track: #4a4438;
+    --color-toggle-thumb: #191919;
+    --color-toggle-icon: #cfc9b8;
+}
+
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+        @include dark-tokens;
+    }
+}
+
+:root[data-theme="dark"] {
+    @include dark-tokens;
+}
