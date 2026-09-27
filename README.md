@@ -67,6 +67,18 @@ For usage and examples, refer to [./exampleSite/content/posts/tufte-features.md 
 
 Downside: LaTeX in post title is no longer supported.
 
+### Dark Mode
+
+This fork adds a light/dark theme toggle, rendered as a pill switch in the
+nav bar. By default the theme follows the visitor's OS-level preference
+(`prefers-color-scheme`); clicking the toggle overrides that choice and
+persists it in `localStorage` for future visits. An inline script sets the
+theme before first paint to avoid a flash of the wrong theme.
+
+Chroma syntax-highlighted code blocks are not yet theme-aware — the light
+or dark Chroma stylesheet is still chosen at build time via the
+`codeBlocksDark` param below, not swapped at runtime with the toggle.
+
 ### Site Parameters
 
 `params` for this theme are:
