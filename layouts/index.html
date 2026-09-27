@@ -12,7 +12,7 @@
 {{ $pgFilter := $pgFilter1 | intersect $pgFilter2 }}
 {{ range (.Paginate $pgFilter).Pages }}
   <h2 class="content-title">
-  {{ if .IsNode }}
+  {{ if .IsBranch }}
   <a href="{{ .Permalink }}">{{ .Title}}</a>
   {{ else }}
   <a href="{{ .RelPermalink }}">{{ .Title }}{{ if .Draft }}&nbsp;:: Draft{{end}}</a>
